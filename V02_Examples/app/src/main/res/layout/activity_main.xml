@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello Android!"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonExplicitIntent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expliziter Intent"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonImplicitIntent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Impliziter Intent"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonBlockUI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UI blockieren"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonNonBlockUI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UI nicht blockieren"
+        android:textSize="20sp" />
+
+
+</LinearLayout>
