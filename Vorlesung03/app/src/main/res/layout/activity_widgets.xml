@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:padding="5dp"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:textColor="@android:color/white"
+            android:background="@color/colorPrimaryDark"
+            app:drawableEndCompat="@drawable/ic_emoji"
+            app:drawableTint="@android:color/white" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="40dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_emoji"
+            android:scaleType="fitCenter"
+            app:tint="@color/colorPrimaryDark" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:padding="5dp"
+            android:text="Button"
+            android:drawableEnd="@drawable/ic_emoji"
+            android:drawableTint="@color/colorPrimary"/>
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/ic_emoji"
+            android:scaleType="fitCenter"
+            android:tint="@color/colorPrimaryDark" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="EditText (Text)"
+            android:textSize="20sp"
+            android:inputType="text|textCapCharacters|textAutoCorrect"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="EditText (Phone)"
+            android:textSize="20sp"
+            android:inputType="phone"/>
+
+        <EditText
+            android:id="@+id/edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="EditText (Password)"
+            android:textSize="20sp"
+            android:inputType="textPassword"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:gravity="top|left"
+            android:text="EditText (Multiline)"
+            android:textSize="20sp"
+            android:inputType="textMultiLine|textNoSuggestions"
+            android:lines="5"
+            android:scrollbars="vertical"/>
+
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:progress="40"
+            android:progressTint="@color/colorPrimary"
+            android:thumbTint="@color/colorPrimaryDark"/>
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:numStars="5"
+            android:rating="3.0"
+            android:stepSize="1.0"
+            android:progressTint="@color/colorPrimaryDark"/>
+
+    </LinearLayout>
+
+</ScrollView>
