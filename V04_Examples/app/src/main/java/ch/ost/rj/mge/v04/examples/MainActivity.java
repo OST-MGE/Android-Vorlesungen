@@ -1,4 +1,4 @@
-package ch.ost.rj.mge.v03.examples;
+package ch.ost.rj.mge.v04.examples;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;

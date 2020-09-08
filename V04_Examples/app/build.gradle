@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "ch.ost.rj.mge.v03.examples"
+        applicationId "ch.ost.rj.mge.v04.examples"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1

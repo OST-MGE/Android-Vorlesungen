@@ -1,4 +1,4 @@
-package ch.ost.rj.mge.v03.examples;
+package ch.ost.rj.mge.v04.examples;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
