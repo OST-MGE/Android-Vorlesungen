@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".PersistenceActivity"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/editext_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:text="Vorlesung 5"
+            tools:ignore="LabelFor" />
+
+        <!-- App Specific Files -->
+
+        <Button
+            android:id="@+id/button_asf_write_internal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Write Internal File" />
+
+        <Button
+            android:id="@+id/button_asf_read_internal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Read Internal File" />
+
+        <Button
+            android:id="@+id/button_asf_write_external"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Write External File" />
+
+        <Button
+            android:id="@+id/button_asf_read_external"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Read External File" />
+
+        <!-- Preferences -->
+
+        <Button
+            android:id="@+id/button_preferences_write"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Write to Preferences" />
+
+        <Button
+            android:id="@+id/button_preferences_read"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Read from Preferences" />
+
+        <!-- Media -->
+
+        <Button
+            android:id="@+id/button_media_write"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Write to Media Store" />
+
+        <Button
+            android:id="@+id/button_media_read"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Read from Media Store" />
+
+        <!-- Documents -->
+
+        <Button
+            android:id="@+id/button_document_write"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Write to Document" />
+
+        <Button
+            android:id="@+id/button_document_read"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Read from Document" />
+
+        <!-- Database -->
+
+        <Button
+            android:id="@+id/button_database_write"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Insert into DB (SQLite)" />
+
+        <Button
+            android:id="@+id/button_database_read"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Read from DB (SQLite)" />
+
+        <Button
+            android:id="@+id/button_room_write"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Insert into DB (Room)" />
+
+        <Button
+            android:id="@+id/button_room_read"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Read from DB (Room)" />
+
+    </LinearLayout>
+
+</ScrollView>
