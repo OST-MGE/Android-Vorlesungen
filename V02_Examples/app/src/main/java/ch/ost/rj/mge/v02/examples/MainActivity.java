@@ -58,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
             Runnable background = () -> {
                 sleep();
 
+                // Crash: Ausführung auf selben Thread (Background)
+                //new Thread(updateUI).run();
+
                 // Option 1
                 this.runOnUiThread(updateUI);
 
