@@ -48,9 +48,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_widgets);
-
-        //setUpAnimationForConstraintLayout();
+        setUpForPaddingAndMarginDemo();
+        //setUpForLinearLayoutVerticalDemo();
+        //setUpForLinearLayoutHorizontalDemo();
+        //setUpForFrameLayoutDemo();
+        //setUpForRelativeLayoutDemo();
+        //setUpForConstraintLayoutDemo();
+        //setUpAnimationForConstraintLayoutDemo();
         //setUpForWidgetDemo();
         //setUpForSystemWidgetsDemo();
         //setUpForMenuDemo();
@@ -59,7 +63,31 @@ public class MainActivity extends AppCompatActivity {
         //setUpForListViewDemo3();
     }
 
-    private void setUpAnimationForConstraintLayout() {
+    private void setUpForPaddingAndMarginDemo() {
+        setContentView(R.layout.activity_padding_and_margin);
+    }
+
+    private void setUpForLinearLayoutVerticalDemo() {
+        setContentView(R.layout.activity_linear_vertical);
+    }
+
+    private void setUpForLinearLayoutHorizontalDemo() {
+        setContentView(R.layout.activity_linear_horizontal);
+    }
+
+    private void setUpForFrameLayoutDemo() {
+        this.setContentView(R.layout.activity_frame);
+    }
+
+    private void setUpForRelativeLayoutDemo() {
+        this.setContentView(R.layout.activity_relative);
+    }
+
+    private void setUpForConstraintLayoutDemo() {
+        this.setContentView(R.layout.activity_constraint);
+    }
+
+    private void setUpAnimationForConstraintLayoutDemo() {
         setContentView(R.layout.activity_constraint);
 
         TextView textViewA = findViewById(R.id.txtA);
