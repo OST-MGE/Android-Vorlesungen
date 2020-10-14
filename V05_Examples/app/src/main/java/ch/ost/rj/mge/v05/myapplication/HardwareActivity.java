@@ -98,7 +98,7 @@ public class HardwareActivity extends AppCompatActivity implements SensorEventLi
     }
 
     private void setOutputText(String text) {
-        outputTextView.setText(text);
+        outputTextView.post(() -> outputTextView.setText(text));
     }
 
     private void subscribeToLightSensor() {
@@ -153,6 +153,8 @@ public class HardwareActivity extends AppCompatActivity implements SensorEventLi
             int activeNetworkType = activeNetwork.getType();
             String type = activeNetworkType == ConnectivityManager.TYPE_WIFI ? "WiFi" : "Mobile";
             setOutputText("Active connection: " + type);
+        } else {
+            setOutputText("Active connection: none");
         }
 
         boolean isWifiConn = false;

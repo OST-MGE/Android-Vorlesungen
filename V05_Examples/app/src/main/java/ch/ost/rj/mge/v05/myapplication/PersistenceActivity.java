@@ -106,7 +106,7 @@ public class PersistenceActivity extends AppCompatActivity {
     }
 
     private void setInputText(String text) {
-        inputText.setText(text);
+        inputText.post(() -> inputText.setText(text));
     }
 
     private void writeAppSpecificInternalFile() {
@@ -367,6 +367,7 @@ public class PersistenceActivity extends AppCompatActivity {
 
         while(cursor.moveToNext()) {
             Log.d(DEBUG_TAG, "DB Entry | " + cursor.getInt(0) + " | " + cursor.getString(1));
+            setInputText(cursor.getString(1));
         }
 
         cursor.close();
@@ -393,6 +394,7 @@ public class PersistenceActivity extends AppCompatActivity {
             List<Entry> entries = db.entryDao().getEntries();
             for (Entry entry : entries) {
                 Log.d(DEBUG_TAG, "DB Entry | " + entry.id + " | " + entry.content);
+                setInputText(entry.content);
             }
 
             db.close();

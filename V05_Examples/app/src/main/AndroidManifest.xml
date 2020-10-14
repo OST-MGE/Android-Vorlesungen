@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".HardwareActivity">
+        <activity android:name=".PermissionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -25,9 +25,11 @@
         </activity>
 
         <activity android:name=".PersistenceActivity">
+
         </activity>
 
-        <activity android:name=".PermissionActivity">
+        <activity android:name=".HardwareActivity">
+
         </activity>
 
     </application>
