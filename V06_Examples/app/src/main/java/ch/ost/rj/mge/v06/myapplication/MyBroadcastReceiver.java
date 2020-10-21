@@ -12,7 +12,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.d(LOG_TAG, "Broadcast | Action: " + intent.getAction());
 
-        if (intent.getExtras().containsKey(MyStartedService.SERVICE_RESULT_KEY)) {
+        if (intent.getExtras() != null && intent.getExtras().containsKey(MyStartedService.SERVICE_RESULT_KEY)) {
             Log.d(LOG_TAG, "Broadcast | Service Result: " + intent.getIntExtra(MyStartedService.SERVICE_RESULT_KEY, 0));
         }
     }
