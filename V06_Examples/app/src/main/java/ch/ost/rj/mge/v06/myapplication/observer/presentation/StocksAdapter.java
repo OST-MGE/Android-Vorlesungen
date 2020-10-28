@@ -85,7 +85,6 @@ public class StocksAdapter extends RecyclerView.Adapter<StocksAdapter.ViewHolder
         notifyDataSetChanged();
     }
 
-
     private void createHandler() {
         this.handler = new Handler(Looper.getMainLooper());
     }

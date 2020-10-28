@@ -14,7 +14,7 @@
             android:id="@+id/button_start_activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Start 2nd Activity" />
+            android:text="Observer Demo" />
 
         <TextView
             android:id="@+id/textview_async_output"

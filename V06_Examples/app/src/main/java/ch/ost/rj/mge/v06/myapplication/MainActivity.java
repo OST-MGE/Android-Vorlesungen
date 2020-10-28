@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     private BroadcastReceiver receiver;
     private MyBoundService boundService;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
