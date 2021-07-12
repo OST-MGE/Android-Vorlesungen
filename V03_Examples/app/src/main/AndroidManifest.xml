@@ -3,19 +3,34 @@
     package="ch.ost.rj.mge.v03.examples">
 
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity android:name=".PaddingAndMarginActivity" android:label="@string/padding_and_margin" />
+        <activity android:name=".LinearLayoutVerticalActivity" android:label="@string/linear_layout_vertical" />
+        <activity android:name=".LinearLayoutHorizontalActivity" android:label="@string/linear_layout_horizontal" />
+        <activity android:name=".FrameLayoutActivity" android:label="@string/frame_layout" />
+        <activity android:name=".RelativeLayoutActivity" android:label="@string/relative_layout" />
+        <activity android:name=".ConstraintLayoutActivity" android:label="@string/constraint_layout" />
+
+        <activity android:name=".WidgetsNormalActivity" android:label="@string/widgets_normal" />
+        <activity android:name=".WidgetsApiActivity" android:label="@string/widgets_api" />
+        <activity android:name=".WidgetsMenuActivity" android:label="@string/widgets_menu" />
+
+        <activity android:name=".ListArrayAdapterActivity" android:label="@string/list_array_adapter" />
+        <activity android:name=".ListCustomAdapterActivity" android:label="@string/list_custom_adapter" />
+        <activity android:name=".ListRecyclerViewActivity" android:label="@string/list_recycler_view" />
+
     </application>
 
 </manifest>

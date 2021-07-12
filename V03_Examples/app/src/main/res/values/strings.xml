@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">Vorlesung 03</string>
+    <string name="app_name">MGE V03</string>
+    <string name="padding_and_margin">Padding and Margin</string>
+    <string name="linear_layout_vertical">Linear Layout #1 (Vertical)</string>
+    <string name="linear_layout_horizontal">Linear Layout #2 (Horizontal)</string>
+    <string name="frame_layout">Frame Layout</string>
+    <string name="relative_layout">Relative Layout</string>
+    <string name="constraint_layout">Constraint Layout</string>
+
+    <string name="widgets_normal">Widgets #1 (Normal)</string>
+    <string name="widgets_api">Widgets #2 (API)</string>
+    <string name="widgets_menu">Widgets #3 (Menu)</string>
+
+    <string name="list_array_adapter">Listen #1 (Array Adapter)</string>
+    <string name="list_custom_adapter">Listen #2 (Custom Adapter)</string>
+    <string name="list_recycler_view">Listen #3 (Recycler View)</string>
 </resources>
