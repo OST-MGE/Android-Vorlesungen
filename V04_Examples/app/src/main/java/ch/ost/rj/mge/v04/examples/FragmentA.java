@@ -10,15 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class OutputFragment extends Fragment {
+public class FragmentA extends Fragment {
     private static final String TEXT_KEY = "text";
 
-    private OutputFragmentCallback callback;
-    private String textParameter = "Hello from Fragment";
-    private TextView textOutput;
+    private FragmentCallback callback;
+    private String textParameter = "No parameter passed into fragment";
+    private TextView textView;
 
-    public static OutputFragment create(String text) {
-        OutputFragment fragment = new OutputFragment();
+    public static FragmentA create(String text) {
+        FragmentA fragment = new FragmentA();
 
         Bundle args = new Bundle();
         args.putString(TEXT_KEY, text);
@@ -32,15 +32,16 @@ public class OutputFragment extends Fragment {
         super.onAttach(context);
 
         try {
-            callback = (OutputFragmentCallback) context;
+            callback = (FragmentCallback) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement OutputFragmentCallback");
+            throw new ClassCastException(context.toString() + " must implement " + FragmentCallback.class.getSimpleName());
         }
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             textParameter = getArguments().getString(TEXT_KEY);
         }
@@ -48,12 +49,10 @@ public class OutputFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View fragment = inflater.inflate(R.layout.fragment_output, container, false);
+        View fragment = inflater.inflate(R.layout.fragment_a, container, false);
 
-        textOutput = fragment.findViewById(R.id.output_text);
-        textOutput.setOnClickListener(v -> {
-            callback.onTextTapped(textOutput.getText().toString());
-        });
+        textView = fragment.findViewById(R.id.textview_in_first_fragment);
+        textView.setOnClickListener(v -> callback.showMessage(textView.getText().toString()));
 
         return fragment;
     }
@@ -66,6 +65,6 @@ public class OutputFragment extends Fragment {
     }
 
     public void updateText(String text) {
-        textOutput.setText(text);
+        textView.setText(text);
     }
 }
