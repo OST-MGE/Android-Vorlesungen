@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ch.ost.rj.mge.v05.myapplication">
+    package="ch.ost.rj.mge.v05.examples">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -17,20 +17,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".PermissionActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".PersistenceActivity">
-
-        </activity>
-
-        <activity android:name=".HardwareActivity">
-
-        </activity>
-
+        <activity android:name=".permission.PermissionActivity" />
+        <activity android:name=".persistence.PersistenceActivity" />
+        <activity android:name=".hardware.HardwareActivity" />
     </application>
+
 </manifest>

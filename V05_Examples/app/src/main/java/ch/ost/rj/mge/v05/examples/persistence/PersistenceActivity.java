@@ -1,4 +1,4 @@
-package ch.ost.rj.mge.v05.myapplication;
+package ch.ost.rj.mge.v05.examples.persistence;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
@@ -28,9 +28,10 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.List;
 
-import ch.ost.rj.mge.v05.myapplication.database.ContentDbHelper;
-import ch.ost.rj.mge.v05.myapplication.database.Entry;
-import ch.ost.rj.mge.v05.myapplication.database.EntryDatabase;
+import ch.ost.rj.mge.v05.examples.R;
+import ch.ost.rj.mge.v05.examples.persistence.database.ContentDbHelper;
+import ch.ost.rj.mge.v05.examples.persistence.database.Entry;
+import ch.ost.rj.mge.v05.examples.persistence.database.EntryDatabase;
 
 public class PersistenceActivity extends AppCompatActivity {
     private static final String DEBUG_TAG = "MGE.V05";
@@ -44,6 +45,7 @@ public class PersistenceActivity extends AppCompatActivity {
     private static final int CREATE_DOCUMENT_CODE = 1;
     private static final int OPEN_DOCUMENT_CODE = 2;
 
+    private static final String SQLITE_DB = "sqlite.db";
     private static final String ROOM_DB = "room.db";
 
     private EditText inputText;
@@ -66,6 +68,12 @@ public class PersistenceActivity extends AppCompatActivity {
         findViewById(R.id.button_preferences_write).setOnClickListener(v -> writePreferences());
         findViewById(R.id.button_preferences_read).setOnClickListener(v -> readPreferences());
 
+        // Database
+        findViewById(R.id.button_database_write).setOnClickListener(v -> writeDatabase());
+        findViewById(R.id.button_database_read).setOnClickListener(v -> readDatabase());
+        findViewById(R.id.button_room_write).setOnClickListener(v -> writeDatabaseWithRoom());
+        findViewById(R.id.button_room_read).setOnClickListener(v -> readDatabaseWithRoom());
+
         // Media Store
         findViewById(R.id.button_media_write).setOnClickListener(v -> writeMedia());
         findViewById(R.id.button_media_read).setOnClickListener(v -> readMedia());
@@ -73,12 +81,6 @@ public class PersistenceActivity extends AppCompatActivity {
         // Documents
         findViewById(R.id.button_document_write).setOnClickListener(v -> writeDocument());
         findViewById(R.id.button_document_read).setOnClickListener(v -> readDocument());
-
-        // Database
-        findViewById(R.id.button_database_write).setOnClickListener(v -> writeDatabase());
-        findViewById(R.id.button_database_read).setOnClickListener(v -> readDatabase());
-        findViewById(R.id.button_room_write).setOnClickListener(v -> writeDatabaseWithRoom());
-        findViewById(R.id.button_room_read).setOnClickListener(v -> readDatabaseWithRoom());
     }
 
     @Override
@@ -190,99 +192,145 @@ public class PersistenceActivity extends AppCompatActivity {
         setInputText(value);
     }
 
+    private void writeDatabase() {
+        String content = getInputText();
+
+        ContentValues values = new ContentValues();
+        values.put("content", content);
+
+        ContentDbHelper dbHelper = new ContentDbHelper(this, SQLITE_DB);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.insert("entry", null, values);
+        db.close();
+    }
+
+    private void readDatabase() {
+        ContentDbHelper dbHelper = new ContentDbHelper(this, SQLITE_DB);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(
+                "entry",
+                new String[]{ "id", "content" },
+                null,
+                null,
+                null,
+                null,
+                "id ASC");
+
+        while(cursor.moveToNext()) {
+            Log.d(DEBUG_TAG, "DB Entry | " + cursor.getInt(0) + " | " + cursor.getString(1));
+            setInputText(cursor.getString(1));
+        }
+
+        cursor.close();
+        db.close();
+    }
+
+    private void writeDatabaseWithRoom() {
+        Runnable write = () -> {
+            Entry entry = new Entry();
+            entry.content = getInputText();
+
+            EntryDatabase db = Room.databaseBuilder(this, EntryDatabase.class, ROOM_DB).build();
+            db.entryDao().insert(entry);
+            db.close();
+        };
+
+        new Thread(write).start();
+    }
+
+    private void readDatabaseWithRoom() {
+        Runnable read = () -> {
+            EntryDatabase db = Room.databaseBuilder(this, EntryDatabase.class, ROOM_DB).build();
+
+            List<Entry> entries = db.entryDao().getEntries();
+            for (Entry entry : entries) {
+                Log.d(DEBUG_TAG, "DB Entry | " + entry.id + " | " + entry.content);
+                setInputText(entry.content);
+            }
+
+            db.close();
+        };
+
+        new Thread(read).start();
+    }
+
     private void writeMedia() {
         long millis = System.currentTimeMillis();
-        byte[] imageBytes = readImageFromAssets();
-        String fileName = "MGE Image " + millis + ".png";
+        byte[] textBytes = getInputText().getBytes();
+        String fileName = "MGE Textfile " + millis + ".txt";
+
+        ContentValues metaData = new ContentValues();
+        metaData.put(MediaStore.Files.FileColumns.TITLE, fileName);
+        metaData.put(MediaStore.Files.FileColumns.DISPLAY_NAME, fileName);
+        metaData.put(MediaStore.Files.FileColumns.MIME_TYPE, FILE_TYPE);
+        metaData.put(MediaStore.Files.FileColumns.DATE_ADDED, millis);
+        metaData.put(MediaStore.Files.FileColumns.DATE_TAKEN, millis);
 
         ContentResolver resolver = getContentResolver();
-
-        Uri imageCollection = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
-
-        ContentValues image = new ContentValues();
-        image.put(MediaStore.Images.Media.TITLE, fileName);
-        image.put(MediaStore.Images.Media.DISPLAY_NAME, fileName);
-        image.put(MediaStore.Images.Media.DESCRIPTION, fileName);
-        image.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
-        image.put(MediaStore.Images.Media.DATE_ADDED, millis);
-        image.put(MediaStore.Images.Media.DATE_TAKEN, millis);
-
-        Uri newImageUri = resolver.insert(imageCollection, image);
-
-        writeImage(resolver, newImageUri, imageBytes);
+        Uri filesDirectory = MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
+        Uri newFileUri = resolver.insert(filesDirectory, metaData);
+        writeFile(resolver, newFileUri, textBytes);
     }
 
     private void readMedia() {
         String[] projection = new String[] {
-                MediaStore.Images.Media._ID,
-                MediaStore.Images.Media.TITLE,
-                MediaStore.Images.Media.DATE_ADDED
+                MediaStore.Files.FileColumns._ID,
+                MediaStore.Files.FileColumns.TITLE,
+                MediaStore.Files.FileColumns.DATE_ADDED
         };
 
-        String sortOrder = MediaStore.Images.Media.DATE_ADDED + " DESC";
+        String sortOrder = MediaStore.Files.FileColumns.DATE_ADDED + " DESC";
 
         ContentResolver resolver = getContentResolver();
+        Uri filesDirectory = MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
         Cursor cursor = resolver.query(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                filesDirectory,
                 projection,
                 null,
                 null,
                 sortOrder
         );
 
-        int idColumn = cursor.getColumnIndex(MediaStore.Images.Media._ID);
-        int titleColumn = cursor.getColumnIndex(MediaStore.Images.Media.TITLE);
-        int addedColumn = cursor.getColumnIndex(MediaStore.Images.Media.DATE_ADDED);
+        int idColumn = cursor.getColumnIndex(MediaStore.Files.FileColumns._ID);
+        int titleColumn = cursor.getColumnIndex(MediaStore.Files.FileColumns.TITLE);
+        int addedColumn = cursor.getColumnIndex(MediaStore.Files.FileColumns.DATE_ADDED);
 
         while (cursor.moveToNext()) {
             long id = cursor.getLong(idColumn);
             String title = cursor.getString(titleColumn);
             long added = cursor.getLong(addedColumn);
 
-            Uri imageUri = ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, id);
+            Uri fileUri = ContentUris.withAppendedId(filesDirectory, id);
 
             Log.d(DEBUG_TAG, "Media Store | ID: " + id + " | Title: " + title + " | Added: " + added);
-            Log.d(DEBUG_TAG, "Media Store | Uri: " + imageUri);
+            Log.d(DEBUG_TAG, "Media Store | Uri: " + fileUri);
         }
 
         cursor.close();
     }
 
-    private byte[] readImageFromAssets() {
-        try {
-            InputStream is = getAssets().open("android-mascot.png");
-            byte[] imageBytes = new byte[is.available()];
-            is.read(imageBytes);
-            is.close();
-
-            return imageBytes;
-        } catch (Exception ignored) {
-            return new byte[0];
-        }
-    }
-
-    private void writeImage(ContentResolver contentResolver, Uri targetUri, byte[] imageBytes) {
+    private void writeFile(ContentResolver contentResolver, Uri targetUri, byte[] content) {
         // Based on https://gist.github.com/benny-shotvibe/1e0d745b7bc68a9c3256
         try {
             final int BUFFER_SIZE = 1024;
 
-            ByteArrayInputStream imageInput = new ByteArrayInputStream(imageBytes);
-            OutputStream imageOut = contentResolver.openOutputStream(targetUri);
+            ByteArrayInputStream inputStream = new ByteArrayInputStream(content);
+            OutputStream outputStream = contentResolver.openOutputStream(targetUri);
 
             byte[] buffer = new byte[BUFFER_SIZE];
             while (true) {
-                int numBytesRead = imageInput.read(buffer);
+                int numBytesRead = inputStream.read(buffer);
                 if (numBytesRead <= 0) {
                     break;
                 }
-                imageOut.write(buffer, 0, numBytesRead);
+                outputStream.write(buffer, 0, numBytesRead);
             }
 
-            imageOut.close();
-            imageInput.close();
+            outputStream.close();
+            inputStream.close();
 
         } catch (Exception e) {
-            Log.e(DEBUG_TAG, "Could not write image.", e);
+            Log.e(DEBUG_TAG, "Could not write file.", e);
         }
     }
 
@@ -339,67 +387,5 @@ public class PersistenceActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e(DEBUG_TAG, "Could not read document.", e);
         }
-    }
-
-    private void writeDatabase() {
-        String content = getInputText();
-
-        ContentValues values = new ContentValues();
-        values.put("content", content);
-
-        ContentDbHelper dbHelper = new ContentDbHelper(this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        db.insert("entry", null, values);
-        db.close();
-    }
-
-    private void readDatabase() {
-        ContentDbHelper dbHelper = new ContentDbHelper(this);
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query(
-            "entry",
-            new String[]{ "id", "content" },
-            null,
-            null,
-            null,
-            null,
-            "id ASC");
-
-        while(cursor.moveToNext()) {
-            Log.d(DEBUG_TAG, "DB Entry | " + cursor.getInt(0) + " | " + cursor.getString(1));
-            setInputText(cursor.getString(1));
-        }
-
-        cursor.close();
-        db.close();
-    }
-
-    private void writeDatabaseWithRoom() {
-        Runnable write = () -> {
-            Entry entry = new Entry();
-            entry.content = getInputText();
-
-            EntryDatabase db = Room.databaseBuilder(this, EntryDatabase.class, ROOM_DB).build();
-            db.entryDao().insert(entry);
-            db.close();
-        };
-
-        new Thread(write).start();
-    }
-
-    private void readDatabaseWithRoom() {
-        Runnable read = () -> {
-            EntryDatabase db = Room.databaseBuilder(this, EntryDatabase.class, ROOM_DB).build();
-
-            List<Entry> entries = db.entryDao().getEntries();
-            for (Entry entry : entries) {
-                Log.d(DEBUG_TAG, "DB Entry | " + entry.id + " | " + entry.content);
-                setInputText(entry.content);
-            }
-
-            db.close();
-        };
-
-        new Thread(read).start();
     }
 }

@@ -1,4 +1,4 @@
-package ch.ost.rj.mge.v05.myapplication;
+package ch.ost.rj.mge.v05.examples.hardware;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,18 +30,19 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.List;
 
-import ch.ost.rj.mge.v05.myapplication.internet.RetrofitTodos;
-import ch.ost.rj.mge.v05.myapplication.internet.TodoItem;
+import ch.ost.rj.mge.v05.examples.R;
+import ch.ost.rj.mge.v05.examples.hardware.internet.RetrofitTodos;
+import ch.ost.rj.mge.v05.examples.hardware.internet.TodoItem;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -54,6 +55,7 @@ public class HardwareActivity extends AppCompatActivity implements SensorEventLi
     private Button subscribeLightSensorButton;
     private Button unsubscribeLightSensorButton;
     private Button subscribePositionUpdatesButton;
+    private Button unsubscribePositionUpdatesButton;
 
     SensorManager sensorManager;
     Sensor sensor;
@@ -83,8 +85,12 @@ public class HardwareActivity extends AppCompatActivity implements SensorEventLi
         findViewById(R.id.button_internet_retrofit).setOnClickListener(v -> readDataWithRetrofit());
 
         // Position
-        subscribePositionUpdatesButton = findViewById(R.id.button_position_updates);
+        subscribePositionUpdatesButton = findViewById(R.id.button_position_subscribe);
         subscribePositionUpdatesButton.setOnClickListener(v -> subscribeToPositionUpdates());
+
+        unsubscribePositionUpdatesButton = findViewById(R.id.button_position_unsubscribe);
+        unsubscribePositionUpdatesButton.setEnabled(false);
+        unsubscribePositionUpdatesButton.setOnClickListener(v -> unsubscribeFromPositionUpdates());
     }
 
     @Override
@@ -203,14 +209,28 @@ public class HardwareActivity extends AppCompatActivity implements SensorEventLi
     }
 
     private void readDataWithRetrofit() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        Runnable action = () -> {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("https://jsonplaceholder.typicode.com/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
 
-        RetrofitTodos service = retrofit.create(RetrofitTodos.class);
+            RetrofitTodos service = retrofit.create(RetrofitTodos.class);
 
-        Call<List<TodoItem>> call = service.getItems();
+            Call<List<TodoItem>> call = service.getItems();
+
+            try {
+                retrofit2.Response<List<TodoItem>> response = call.execute();
+                setOutputText("Received TODO-items: " + response.body().size());
+            } catch (IOException exception) {
+                setOutputText("Could not read data: " + exception.getMessage());
+            }
+        };
+
+        new Thread(action).start();
+
+        // Alternative with integrated Backgrounding and Error-Handling
+        /*
         call.enqueue(new Callback<List<TodoItem>>() {
             @Override
             public void onResponse(Call<List<TodoItem>> call, retrofit2.Response<List<TodoItem>> response) {
@@ -221,6 +241,7 @@ public class HardwareActivity extends AppCompatActivity implements SensorEventLi
             public void onFailure(Call<List<TodoItem>> call, Throwable t) {
                 setOutputText("Could not read data: " + t.getMessage());            }
         });
+        */
     }
 
     @SuppressLint("NewApi")
@@ -243,8 +264,15 @@ public class HardwareActivity extends AppCompatActivity implements SensorEventLi
         String provider = manager.getBestProvider(criteria, true);
 
         manager.requestLocationUpdates(provider, 5000L, 0, this);
-
         subscribePositionUpdatesButton.setEnabled(false);
+        unsubscribePositionUpdatesButton.setEnabled(true);
+    }
+
+    private void unsubscribeFromPositionUpdates() {
+        LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        manager.removeUpdates(this);
+        subscribePositionUpdatesButton.setEnabled(true);
+        unsubscribePositionUpdatesButton.setEnabled(false);
     }
 
     @Override

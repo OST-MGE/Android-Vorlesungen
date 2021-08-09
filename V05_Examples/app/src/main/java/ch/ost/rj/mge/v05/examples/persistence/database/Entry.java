@@ -1,4 +1,4 @@
-package ch.ost.rj.mge.v05.myapplication.database;
+package ch.ost.rj.mge.v05.examples.persistence.database;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

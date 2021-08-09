@@ -1,4 +1,4 @@
-package ch.ost.rj.mge.v05.myapplication.internet;
+package ch.ost.rj.mge.v05.examples.hardware.internet;
 
 import java.util.List;
 

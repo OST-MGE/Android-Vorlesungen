@@ -1,4 +1,4 @@
-package ch.ost.rj.mge.v05.myapplication.internet;
+package ch.ost.rj.mge.v05.examples.hardware.internet;
 
 public class TodoItem {
     private int id;

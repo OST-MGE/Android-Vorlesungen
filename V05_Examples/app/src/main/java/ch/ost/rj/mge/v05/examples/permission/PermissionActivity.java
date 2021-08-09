@@ -1,4 +1,4 @@
-package ch.ost.rj.mge.v05.myapplication;
+package ch.ost.rj.mge.v05.examples.permission;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -9,12 +9,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
+import android.widget.Toast;
+
+import ch.ost.rj.mge.v05.examples.R;
 
 public class PermissionActivity extends AppCompatActivity {
-    private static final String DEBUG_TAG = "MGE.V05";
-
     private static final int PHONE_PERMISSION_CODE = 1;
 
     Button openDialerButton;
@@ -47,6 +47,8 @@ public class PermissionActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
         if (requestCode == PHONE_PERMISSION_CODE) {
             boolean granted = checkPermission(grantResults);
             updateButtonAvailability(granted);
@@ -91,7 +93,7 @@ public class PermissionActivity extends AppCompatActivity {
             return;
 
         if (shouldShowRequestPermissionRationale(permission)) {
-            Log.d(DEBUG_TAG, "Erklärung anzeigen für: " + permission);
+            Toast.makeText(this, "Erklärung anzeigen für: " + permission, Toast.LENGTH_SHORT).show();
         }
 
         requestPermissions(new String[]{ permission }, requestCode);
