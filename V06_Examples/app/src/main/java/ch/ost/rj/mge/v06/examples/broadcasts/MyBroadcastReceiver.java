@@ -1,9 +1,11 @@
-package ch.ost.rj.mge.v06.myapplication;
+package ch.ost.rj.mge.v06.examples.broadcasts;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+
+import ch.ost.rj.mge.v06.examples.services.MyStartedService;
 
 public class MyBroadcastReceiver extends BroadcastReceiver {
     private static final String LOG_TAG = "MGE.V06.DEBUG";

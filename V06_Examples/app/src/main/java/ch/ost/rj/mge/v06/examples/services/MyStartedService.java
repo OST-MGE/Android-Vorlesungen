@@ -1,4 +1,4 @@
-package ch.ost.rj.mge.v06.myapplication;
+package ch.ost.rj.mge.v06.examples.services;
 
 import android.app.PendingIntent;
 import android.app.Service;
@@ -11,6 +11,8 @@ public class MyStartedService extends Service {
     public static final String SERVICE_RESULT_KEY = "service.result";
 
     private static final String LOG_TAG = "MGE.V06.DEBUG";
+
+    private boolean stopRequested;
 
     @Override
     public void onCreate() {
@@ -28,16 +30,21 @@ public class MyStartedService extends Service {
                     Thread.sleep(1000);
                 } catch (InterruptedException ignored) {}
 
-                logMessage("onStartCommand: " + startId + " | Durchgang " + i);
+                if (stopRequested)
+                    break;
+
+                logMessage("onStartCommand: ID " + startId + " | Durchgang " + i);
             }
 
-            try {
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra(SERVICE_RESULT_KEY, startId);
+            if (!stopRequested) {
+                try {
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra(SERVICE_RESULT_KEY, startId);
 
-                PendingIntent pendingIntent = intent.getParcelableExtra(SERVICE_PI_KEY);
-                pendingIntent.send(this, 0, resultIntent);
-            } catch (PendingIntent.CanceledException ignored) {}
+                    PendingIntent pendingIntent = intent.getParcelableExtra(SERVICE_PI_KEY);
+                    pendingIntent.send(this, 0, resultIntent);
+                } catch (PendingIntent.CanceledException ignored) {}
+            }
 
             stopSelf(startId);
         }).start();
@@ -48,6 +55,7 @@ public class MyStartedService extends Service {
     @Override
     public void onDestroy() {
         logMessage("onDestroy");
+        stopRequested = true;
         super.onDestroy();
     }
 

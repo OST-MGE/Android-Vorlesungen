@@ -1,4 +1,4 @@
-package ch.ost.rj.mge.v06.myapplication;
+package ch.ost.rj.mge.v06.examples.backgrounding;
 
 import android.os.AsyncTask;
 import android.widget.Button;

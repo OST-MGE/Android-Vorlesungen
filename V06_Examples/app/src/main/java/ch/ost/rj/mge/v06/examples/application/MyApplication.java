@@ -1,4 +1,4 @@
-package ch.ost.rj.mge.v06.myapplication;
+package ch.ost.rj.mge.v06.examples.application;
 
 import android.app.Activity;
 import android.app.Application;

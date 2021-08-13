@@ -1,4 +1,4 @@
-package ch.ost.rj.mge.v06.myapplication;
+package ch.ost.rj.mge.v06.examples;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,7 +21,11 @@ import android.widget.TextView;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import ch.ost.rj.mge.v06.myapplication.observer.presentation.ObserverActivity;
+import ch.ost.rj.mge.v06.examples.backgrounding.SleepingAsyncTask;
+import ch.ost.rj.mge.v06.examples.broadcasts.MyBroadcastReceiver;
+import ch.ost.rj.mge.v06.examples.observer.presentation.ObserverActivity;
+import ch.ost.rj.mge.v06.examples.services.MyBoundService;
+import ch.ost.rj.mge.v06.examples.services.MyStartedService;
 
 public class MainActivity extends AppCompatActivity implements ServiceConnection {
     private static final String BROADCAST_ACTION = "ch.ost.rj.mge.v06.myapplication.MY_INTENT";
@@ -42,21 +46,13 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
 
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.button_start_activity).setOnClickListener(v -> {
+        // Observer Demo
+        findViewById(R.id.button_start_observer_demo).setOnClickListener(v -> {
             Intent intent = new Intent(this, ObserverActivity.class);
             startActivity(intent);
         });
 
-        // Background Tasks
-        asyncOutputTextView = findViewById(R.id.textview_async_output);
-        runAsyncTaskButton = findViewById(R.id.button_run_async_task);
-        runWithExecutorButton = findViewById(R.id.button_run_executor);
-
-        runAsyncTaskButton.setOnClickListener(v -> runAsyncTask());
-        runWithExecutorButton.setOnClickListener(v -> runExecutorTask());
-
         // Broadcasts
-
         Button registerReceiverButton = findViewById(R.id.button_register_receiver);
         Button unregisterReceiverButton = findViewById(R.id.button_unregister_receiver);
         Button sendImplicitBroadcastButton = findViewById(R.id.button_send_broadcast_implicit);
@@ -78,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         sendExplicitBroadcastButton.setOnClickListener(v -> sendExplicitBroadcast());
 
         // Services
-
         Button runStartedServiceButton = findViewById(R.id.button_run_started_service);
         Button stopStartedServiceButton = findViewById(R.id.button_stop_started_service);
         connectToBoundServiceButton = findViewById(R.id.button_connect_to_bound_service);
@@ -98,40 +93,15 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         connectToBoundServiceButton.setOnClickListener(v -> connectToBoundService());
         interactWithBoundServiceButton.setOnClickListener(v -> interactWithBoundService());
         disconnectFromBoundServiceButton.setOnClickListener(v -> disconnectFromBoundService());
+
+        // Backgrounding
+        asyncOutputTextView = findViewById(R.id.textview_async_output);
+        runAsyncTaskButton = findViewById(R.id.button_run_async_task);
+        runWithExecutorButton = findViewById(R.id.button_run_executor);
+
+        runAsyncTaskButton.setOnClickListener(v -> runAsyncTask());
+        runWithExecutorButton.setOnClickListener(v -> runExecutorTask());
     }
-
-    // region Background Tasks
-
-    private void runAsyncTask() {
-        new SleepingAsyncTask(runAsyncTaskButton, asyncOutputTextView).execute(5);
-    }
-
-    @SuppressLint("SetTextI18n")
-    private void runExecutorTask() {
-        Looper looper = Looper.getMainLooper();
-        Handler handler = new Handler(looper);
-        Executor executor = Executors.newSingleThreadExecutor();
-
-        executor.execute(() -> {
-            handler.post(() -> runWithExecutorButton.setEnabled(false));
-
-            for (int i = 1; i <= 5; i++) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ignored) {}
-
-                final String progress = "Durchgang " + i;
-                handler.post(() -> asyncOutputTextView.setText(progress));
-            }
-
-            handler.post(() -> {
-                asyncOutputTextView.setText("Berechnung komplett");
-                runWithExecutorButton.setEnabled(true);
-            });
-        });
-    }
-
-    // endregion
 
     // region Broadcasts
 
@@ -219,6 +189,39 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         disconnectFromBoundServiceButton.setEnabled(false);
 
         boundService = null;
+    }
+
+    // endregion
+
+    // region Backgrounding
+
+    private void runAsyncTask() {
+        new SleepingAsyncTask(runAsyncTaskButton, asyncOutputTextView).execute(5);
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void runExecutorTask() {
+        Looper looper = Looper.getMainLooper();
+        Handler handler = new Handler(looper);
+        Executor executor = Executors.newSingleThreadExecutor();
+
+        executor.execute(() -> {
+            handler.post(() -> runWithExecutorButton.setEnabled(false));
+
+            for (int i = 1; i <= 5; i++) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ignored) {}
+
+                final String progress = "Durchgang " + i;
+                handler.post(() -> asyncOutputTextView.setText(progress));
+            }
+
+            handler.post(() -> {
+                asyncOutputTextView.setText("Berechnung komplett");
+                runWithExecutorButton.setEnabled(true);
+            });
+        });
     }
 
     // endregion

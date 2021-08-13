@@ -1,4 +1,4 @@
-package ch.ost.rj.mge.v06.myapplication.observer.domain;
+package ch.ost.rj.mge.v06.examples.observer.domain;
 
 import java.util.Date;
 import java.util.Observable;

@@ -1,4 +1,4 @@
-package ch.ost.rj.mge.v06.myapplication;
+package ch.ost.rj.mge.v06.examples.services;
 
 import android.app.Service;
 import android.content.Intent;
@@ -11,7 +11,7 @@ public class MyBoundService extends Service {
     private static final String LOG_TAG = "MGE.V06.DEBUG";
 
     public class MyBinder extends Binder {
-        MyBoundService getService() {
+        public MyBoundService getService() {
             return MyBoundService.this;
         }
     }

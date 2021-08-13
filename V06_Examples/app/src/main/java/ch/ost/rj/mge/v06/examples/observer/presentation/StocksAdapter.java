@@ -1,4 +1,4 @@
-package ch.ost.rj.mge.v06.myapplication.observer.presentation;
+package ch.ost.rj.mge.v06.examples.observer.presentation;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import ch.ost.rj.mge.v06.myapplication.R;
-import ch.ost.rj.mge.v06.myapplication.observer.domain.Stock;
+import ch.ost.rj.mge.v06.examples.R;
+import ch.ost.rj.mge.v06.examples.observer.domain.Stock;
 
 public class StocksAdapter extends RecyclerView.Adapter<StocksAdapter.ViewHolder> implements Observer {
     private ArrayList<Stock> dataset;
