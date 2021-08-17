@@ -1,19 +1,19 @@
-package ch.ost.rj.mge.v07.myapplication.viewmodel;
+package ch.ost.rj.mge.v07.examples.viewmodel.observablefields;
 
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 
-import ch.ost.rj.mge.v07.myapplication.model.UserPojo;
+import ch.ost.rj.mge.v07.examples.viewmodel.User;
 
-public class ViewModelObservableFields {
+public class ViewModel {
 
-    private final UserPojo user;
+    private final User user;
 
     public final ObservableField<String> firstName = new ObservableField<>();
     public final ObservableField<String> lastName = new ObservableField<>();
     public final ObservableInt age = new ObservableInt();
 
-    public ViewModelObservableFields(UserPojo user) {
+    public ViewModel(User user) {
         this.user = user;
 
         firstName.set(user.firstName);

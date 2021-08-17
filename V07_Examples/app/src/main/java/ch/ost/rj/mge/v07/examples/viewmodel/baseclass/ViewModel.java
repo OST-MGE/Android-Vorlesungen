@@ -1,19 +1,18 @@
-package ch.ost.rj.mge.v07.myapplication.viewmodel;
+package ch.ost.rj.mge.v07.examples.viewmodel.baseclass;
 
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-import ch.ost.rj.mge.v07.myapplication.model.UserPojo;
+import ch.ost.rj.mge.v07.examples.viewmodel.User;
 
-public class ViewModelFinal extends ViewModel {
+public class ViewModel extends androidx.lifecycle.ViewModel {
 
-    private final UserPojo user;
+    private final User user;
 
     public final MutableLiveData<String> firstName = new MutableLiveData<>();
     public final MutableLiveData<String> lastName = new MutableLiveData<>();
     public final MutableLiveData<Integer> age = new MutableLiveData();
 
-    public ViewModelFinal(UserPojo user) {
+    public ViewModel(User user) {
         this.user = user;
 
         firstName.setValue(user.firstName);

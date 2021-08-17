@@ -1,16 +1,16 @@
-package ch.ost.rj.mge.v07.myapplication.model;
+package ch.ost.rj.mge.v07.examples.databinding.observableclass;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
-import ch.ost.rj.mge.v07.myapplication.BR;
+import ch.ost.rj.mge.v07.examples.BR;
 
-public class UserObservableClass extends BaseObservable {
+public class User extends BaseObservable {
     private String firstName;
     private String lastName;
     private int age;
 
-    public UserObservableClass(String firstName, String lastName, int age) {
+    public User(String firstName, String lastName, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;

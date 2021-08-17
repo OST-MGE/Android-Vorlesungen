@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="user" type="ch.ost.rj.mge.v07.myapplication.model.UserLiveData"/>
-        <variable name="handler" type="ch.ost.rj.mge.v07.myapplication.handler.EventHandler"/>
+        <variable name="user" type="ch.ost.rj.mge.v07.examples.databinding.observableclass.User"/>
+        <variable name="handler" type="ch.ost.rj.mge.v07.examples.databinding.EventHandlerBase"/>
     </data>
 
     <LinearLayout
@@ -12,7 +12,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="8dp"
-        tools:context=".DataBindingActivity">
+        tools:context=".databinding.observableclass.DataBindingActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="One-Way Bindings"
+            style="@style/SubTitle" />
 
         <TextView
             android:id="@+id/db_first_name"
@@ -37,39 +43,42 @@
             android:layout_height="wrap_content"
             android:text="@{dbFirstName.text + ` ` + dbLastName.text + ` (` + dbAge.text + `)`}"/>
 
-        <Button
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Method Reference"
-            android:onClick="@{handler::onButtonClicked}"/>
+            android:text="Event Handling"
+            style="@style/SubTitle" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Listener Binding"
-            android:onClick='@{(v) -> handler.onButtonClicked(v, "Hello")}'/>
+            android:text="Increment Age - Method Reference"
+            android:onClick="@{handler::incrementAge}"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Increment Age"
-            android:onClick='@{() -> handler.incrementAge()}'/>
+            android:text="Increment Age - Listener Binding"
+            android:onClick='@{(v) -> handler.incrementAge()}'/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Increment Age - From Second Activity"
+            android:onClick='@{() -> handler.startSecondActivity()}'/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Two-Way Bindings"
+            style="@style/SubTitle" />
 
         <NumberPicker
             android:id="@+id/db_age_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_gravity="center"
             android:value="@={user.age}" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="Start Second Activity"
-            android:onClick='@{() -> handler.startSecondActivity()}'/>
 
     </LinearLayout>
 

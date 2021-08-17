@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="top"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Binding"
+        style="@style/SubTitle" />
+
+    <Button
+        android:id="@+id/button_view_binding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Demo" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data Binding"
+        style="@style/SubTitle" />
+
+    <Button
+        android:id="@+id/button_data_binding_pojo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="POJO" />
+
+    <Button
+        android:id="@+id/button_data_binding_observable_fields"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observable Fields" />
+
+    <Button
+        android:id="@+id/button_data_binding_observable_class"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observable Class" />
+
+    <Button
+        android:id="@+id/button_data_binding_live_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Live Data" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Models"
+        style="@style/SubTitle" />
+
+    <Button
+        android:id="@+id/button_view_model_observable_fields"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observable Fields" />
+
+    <Button
+        android:id="@+id/button_view_model_live_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Live Data" />
+
+    <Button
+        android:id="@+id/button_view_model_base_class"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ViewModel Base Class" />
+
+</LinearLayout>

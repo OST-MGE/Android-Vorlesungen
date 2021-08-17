@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="vm" type="ch.ost.rj.mge.v07.myapplication.viewmodel.ViewModelFinal"/>
+        <variable name="vm" type="ch.ost.rj.mge.v07.examples.viewmodel.baseclass.ViewModel"/>
     </data>
 
     <LinearLayout
@@ -11,7 +11,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="8dp"
-        tools:context=".DataBindingActivity">
+        tools:context=".viewmodel.baseclass.ViewModelActivity.ViewModelActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Values of User"
+            style="@style/SubTitle" />
 
         <TextView
             android:id="@+id/db_first_name"
@@ -31,24 +37,28 @@
             android:layout_height="wrap_content"
             android:text="@{String.valueOf(vm.age) + ` Jahre`}"/>
 
-        <Button
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Increment Age"
-            android:onClick='@{() -> vm.incrementAge()}'/>
+            android:text="Modify User"
+            style="@style/SubTitle" />
 
         <NumberPicker
             android:id="@+id/db_age_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_gravity="center"
             android:value="@={vm.age}" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
+            android:text="Increment Age"
+            android:onClick='@{() -> vm.incrementAge()}'/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Save User"
             android:onClick='@{() -> vm.save()}'/>
 

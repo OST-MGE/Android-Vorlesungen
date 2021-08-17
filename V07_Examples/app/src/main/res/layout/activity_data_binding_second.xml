@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="handler" type="ch.ost.rj.mge.v07.myapplication.handler.EventHandler"/>
+        <variable name="handler" type="ch.ost.rj.mge.v07.examples.databinding.EventHandlerBase"/>
     </data>
 
     <LinearLayout
@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="8dp"
-        tools:context=".DataBindingActivity">
+        tools:context=".databinding.SecondDataBindingActivity">
 
         <Button
             android:layout_width="match_parent"

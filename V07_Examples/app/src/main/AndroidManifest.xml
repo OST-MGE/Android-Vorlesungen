@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ch.ost.rj.mge.v07.myapplication">
+    package="ch.ost.rj.mge.v07.examples">
 
     <application
         android:allowBackup="true"
@@ -9,16 +9,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewBindingActivity" />
-        <activity android:name=".DataBindingActivity"/>
-        <activity android:name=".SecondActivity" />
-        <activity android:name=".ViewModelActivity">
+
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".viewbinding.ViewBindingActivity" android:label="View Binding" />
+
+        <activity android:name=".databinding.SecondDataBindingActivity" android:label="Data Binding - Second Screen" />
+        <activity android:name=".databinding.pojo.DataBindingActivity" android:label="Data Binding (POJO)" />
+        <activity android:name=".databinding.observablefields.DataBindingActivity" android:label="Data Binding (Observable Fields)" />
+        <activity android:name=".databinding.observableclass.DataBindingActivity" android:label="Data Binding (Observable Class)" />
+        <activity android:name=".databinding.livedata.DataBindingActivity" android:label="Data Binding (Live Data)" />
+
+        <activity android:name=".viewmodel.observablefields.ViewModelActivity" android:label="View Model (Observable Fields)" />
+        <activity android:name=".viewmodel.livedata.ViewModelActivity" android:label="View Model (Live Data)" />
+        <activity android:name=".viewmodel.baseclass.ViewModelActivity" android:label="View Model (Base Class)" />
+
+
     </application>
 
 </manifest>
