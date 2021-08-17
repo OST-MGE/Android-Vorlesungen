@@ -5,42 +5,62 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:padding="20dp"
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textField"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello Android!"
-        android:textSize="20sp" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Intents"
+        android:textAlignment="center"
+        android:paddingTop="28dp"
+        android:paddingBottom="8dp"/>
 
     <Button
         android:id="@+id/buttonExplicitIntent"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Expliziter Intent"
         android:textSize="20sp" />
 
     <Button
         android:id="@+id/buttonImplicitIntent"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Impliziter Intent"
         android:textSize="20sp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Threading"
+        android:textAlignment="center"
+        android:paddingTop="28dp"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:id="@+id/textThreadingOutput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="-- kein Status bisher --"
+        android:textSize="20sp"
+        android:paddingBottom="8dp"/>
+
     <Button
         android:id="@+id/buttonBlockUI"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="UI blockieren"
         android:textSize="20sp" />
 
     <Button
         android:id="@+id/buttonNonBlockUI"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="UI nicht blockieren"
         android:textSize="20sp" />
-
 
 </LinearLayout>

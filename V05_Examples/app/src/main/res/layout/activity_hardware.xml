@@ -1,64 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="8dp"
-    tools:context=".HardwareActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textview_output"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:importantForAutofill="no"
-        android:text="n/a" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:context=".hardware.HardwareActivity">
 
-    <Button
-        android:id="@+id/button_lightsensor_subscribe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Subscribe to Light Sensor" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Output"
+            style="@style/SubTitle" />
 
-    <Button
-        android:id="@+id/button_lightsensor_unsubscribe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Unsubscribe from Light Sensor" />
+        <TextView
+            android:id="@+id/textview_output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:importantForAutofill="no"
+            android:text="n/a" />
 
-    <Button
-        android:id="@+id/button_vibrate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Vibrate" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Light Sensor"
+            style="@style/SubTitle" />
 
-    <Button
-        android:id="@+id/button_network_status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Check Network Status" />
+        <Button
+            android:id="@+id/button_lightsensor_subscribe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subscribe to Sensor" />
 
-    <Button
-        android:id="@+id/button_internet_okhttp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Read Data with OkHttp" />
+        <Button
+            android:id="@+id/button_lightsensor_unsubscribe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Unsubscribe from Sensor" />
 
-    <Button
-        android:id="@+id/button_internet_retrofit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Read Data with Retrofit" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vibration"
+            style="@style/SubTitle" />
 
-    <Button
-        android:id="@+id/button_position_updates"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Subscribe Position Updates" />
+        <Button
+            android:id="@+id/button_vibrate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vibrate" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Networking"
+            style="@style/SubTitle" />
+
+        <Button
+            android:id="@+id/button_network_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Check Network Status" />
+
+        <Button
+            android:id="@+id/button_internet_okhttp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Read Data with OkHttp" />
+
+        <Button
+            android:id="@+id/button_internet_retrofit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Read Data with Retrofit" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            style="@style/SubTitle" />
+
+        <Button
+            android:id="@+id/button_position_subscribe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subscribe Position Updates" />
+
+        <Button
+            android:id="@+id/button_position_unsubscribe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Unsubscribe Position Updates" />
+
+    </LinearLayout>
+
+</ScrollView>

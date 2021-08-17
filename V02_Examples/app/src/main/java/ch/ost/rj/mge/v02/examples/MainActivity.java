@@ -21,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
         logStateChange("onCreate");
 
-        final TextView textView = findViewById(R.id.textField);
-
         // Expliziter Intent
         Button explicitIntentButton = findViewById(R.id.buttonExplicitIntent);
         explicitIntentButton.setOnClickListener(v -> {
@@ -41,31 +39,33 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Threading: UI Blockierung
+        // Threading: Blockierung des UI (ANR)
+        final TextView threadingOutput = findViewById(R.id.textThreadingOutput);
+
         Button uiBlockingButton = findViewById(R.id.buttonBlockUI);
         uiBlockingButton.setOnClickListener(v -> {
             sleep();
-            textView.setText("Aktualisiert nach Blockierung");
+            threadingOutput.setText("Aktualisiert nach Blockierung");
         });
 
-        // Threading: UI Blockierung (korrekt)
+        // Threading: Ohne Blockierung des UI
         Button uiNonBlockingButton = findViewById(R.id.buttonNonBlockUI);
         uiNonBlockingButton.setOnClickListener(v -> {
             final Runnable updateUI = () -> {
-                textView.setText("Aktualisierung ohne Blockierung");
+                threadingOutput.setText("Aktualisierung ohne Blockierung");
             };
 
             Runnable background = () -> {
                 sleep();
 
-                // Crash: Ausführung auf selben Thread (Background)
+                // Crash: Ausführung auf selbem Thread (Background)
                 //new Thread(updateUI).run();
 
                 // Option 1
                 this.runOnUiThread(updateUI);
 
                 // Option 2
-                textView.post(updateUI);
+                threadingOutput.post(updateUI);
 
                 // Option 3
                 Looper looper = Looper.getMainLooper();

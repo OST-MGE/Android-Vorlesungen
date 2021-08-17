@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/button_fragments_static_integration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fragments: Static" />
+
+    <Button
+        android:id="@+id/button_fragments_dynamic_integration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fragments: Dynamic w/o Animation" />
+
+    <Button
+        android:id="@+id/button_fragments_dynamic_integration_with_animations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fragments: Dynamic w/ Animation" />
+
+    <Button
+        android:id="@+id/button_styling_with_custom_theme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Styling" />
+</LinearLayout>

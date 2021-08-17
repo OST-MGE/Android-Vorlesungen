@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="vm" type="ch.ost.rj.mge.v07.examples.viewmodel.baseclass.ViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:context=".viewmodel.baseclass.ViewModelActivity.ViewModelActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Values of User"
+            style="@style/SubTitle" />
+
+        <TextView
+            android:id="@+id/db_first_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vm.firstName}"/>
+
+        <TextView
+            android:id="@+id/db_last_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vm.lastName}"/>
+
+        <TextView
+            android:id="@+id/db_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(vm.age) + ` Jahre`}"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Modify User"
+            style="@style/SubTitle" />
+
+        <NumberPicker
+            android:id="@+id/db_age_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:value="@={vm.age}" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Increment Age"
+            android:onClick='@{() -> vm.incrementAge()}'/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save User"
+            android:onClick='@{() -> vm.save()}'/>
+
+    </LinearLayout>
+
+</layout>

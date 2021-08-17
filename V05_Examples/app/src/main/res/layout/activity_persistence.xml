@@ -13,7 +13,7 @@
         android:gravity="center"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
-        android:text="Vorlesung 5"
+        android:text="Inhalt für text-basierte API's"
         tools:ignore="LabelFor" />
 
     <ScrollView
@@ -24,107 +24,132 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            tools:context=".PersistenceActivity"
+            tools:context=".persistence.PersistenceActivity"
             android:padding="8dp">
 
             <!-- App Specific Files -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="App-Specific Files"
+                style="@style/SubTitle" />
 
             <Button
                 android:id="@+id/button_asf_write_internal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Write Internal File" />
+                android:text="Write to internal storage" />
 
             <Button
                 android:id="@+id/button_asf_read_internal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Read Internal File" />
+                android:text="Read from internal storage" />
 
             <Button
                 android:id="@+id/button_asf_write_external"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Write External File" />
+                android:text="Write to external storage" />
 
             <Button
                 android:id="@+id/button_asf_read_external"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Read External File" />
+                android:text="Read from external storage" />
 
             <!-- Preferences -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Preferences"
+                style="@style/SubTitle" />
 
             <Button
                 android:id="@+id/button_preferences_write"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Write to Preferences" />
+                android:text="Write" />
 
             <Button
                 android:id="@+id/button_preferences_read"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Read from Preferences" />
-
-            <!-- Media -->
-
-            <Button
-                android:id="@+id/button_media_write"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Write to Media Store" />
-
-            <Button
-                android:id="@+id/button_media_read"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Read from Media Store" />
-
-            <!-- Documents -->
-
-            <Button
-                android:id="@+id/button_document_write"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Write to Document" />
-
-            <Button
-                android:id="@+id/button_document_read"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Read from Document" />
+                android:text="Read" />
 
             <!-- Database -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Database"
+                style="@style/SubTitle" />
 
             <Button
                 android:id="@+id/button_database_write"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Insert into DB (SQLite)" />
+                android:text="Insert using SQLite API" />
 
             <Button
                 android:id="@+id/button_database_read"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Read from DB (SQLite)" />
+                android:text="Read using SQLite API" />
 
             <Button
                 android:id="@+id/button_room_write"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Insert into DB (Room)" />
+                android:text="Insert using Room API" />
 
             <Button
                 android:id="@+id/button_room_read"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Read from DB (Room)" />
+                android:text="Read using Room API" />
+
+            <!-- Media -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Media"
+                style="@style/SubTitle" />
+
+            <Button
+                android:id="@+id/button_media_write"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Write" />
+
+            <Button
+                android:id="@+id/button_media_read"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Read" />
+
+            <!-- Documents -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Documents"
+                style="@style/SubTitle" />
+
+            <Button
+                android:id="@+id/button_document_write"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Write" />
+
+            <Button
+                android:id="@+id/button_document_read"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Read" />
 
         </LinearLayout>
 
