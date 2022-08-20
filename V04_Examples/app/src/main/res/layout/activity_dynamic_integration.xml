@@ -7,7 +7,7 @@
     android:padding="5dp"
     tools:context=".DynamicIntegrationActivity">
 
-    <FrameLayout
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_for_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
