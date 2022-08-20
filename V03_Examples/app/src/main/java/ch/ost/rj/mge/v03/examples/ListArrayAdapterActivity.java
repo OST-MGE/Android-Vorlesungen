@@ -28,7 +28,7 @@ public class ListArrayAdapterActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.list_example);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
-            Toast.makeText(this, "Item " + i, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Item " + (i + 1), Toast.LENGTH_SHORT).show();
         });
     }
 }

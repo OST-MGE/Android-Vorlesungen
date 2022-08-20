@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -32,5 +32,7 @@
         <activity android:name=".ListRecyclerViewActivity" android:label="@string/list_recycler_view" />
 
     </application>
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
 </manifest>
