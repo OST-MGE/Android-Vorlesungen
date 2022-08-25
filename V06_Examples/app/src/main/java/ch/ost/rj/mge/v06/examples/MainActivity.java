@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
     private void runStartedService() {
         Intent broadcastIntent = new Intent(this, MyBroadcastReceiver.class);
         broadcastIntent.setAction(BROADCAST_ACTION);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_MUTABLE);
 
         Intent intent = new Intent(this, MyStartedService.class);
         intent.putExtra(MyStartedService.SERVICE_PI_KEY, pendingIntent);
