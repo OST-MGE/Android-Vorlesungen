@@ -1,9 +1,11 @@
 package ch.ost.rj.mge.v03.examples;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -91,6 +94,15 @@ public class WidgetsApiActivity extends AppCompatActivity {
         final String CHANNEL_DESCRIPTION = "Ein Channel für die MGE Demo";
         final int CHANNEL_IMPORTANCE = NotificationManager.IMPORTANCE_HIGH;
         final int[] notificationId = { 1 };
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            String permission = Manifest.permission.POST_NOTIFICATIONS;
+            int status = ContextCompat.checkSelfPermission(this, permission);
+
+            if (status == PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[] { permission }, 0);
+            }
+        }
 
         NotificationManagerCompat manager = NotificationManagerCompat.from(this);
 

@@ -5,6 +5,15 @@
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Code/OST/MGE-Android-Vorlesungen/V04_Examples/app/src/main/res/layout/activity_static_integration.xml" value="0.2140625" />
+        <entry key="..\:/Code/OST/MGE-Android-Vorlesungen/V04_Examples/app/src/main/res/layout/fragment_a.xml" value="0.2140625" />
+        <entry key="..\:/Code/OST/MGE-Android-Vorlesungen/V04_Examples/app/src/main/res/layout/fragment_b.xml" value="0.4041666666666667" />
+      </map>
+    </option>
+  </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="org.jetbrains.annotations.Nullable" />
     <option name="myDefaultNotNull" value="androidx.annotation.NonNull" />

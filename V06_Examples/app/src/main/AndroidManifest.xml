@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -21,7 +21,7 @@
 
         <activity android:name=".observer.presentation.ObserverActivity" />
 
-        <receiver android:name=".broadcasts.MyBroadcastReceiver">
+        <receiver android:name=".broadcasts.MyBroadcastReceiver" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.TIME_SET"/>
                 <action android:name="ch.ost.rj.mge.v06.myapplication.MY_INTENT" />

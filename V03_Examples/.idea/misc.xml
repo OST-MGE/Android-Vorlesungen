@@ -5,6 +5,19 @@
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Code/OST/MGE-Android-Vorlesungen/V03_Examples/app/src/main/res/layout/activity_constraint.xml" value="0.32742616033755273" />
+        <entry key="..\:/Code/OST/MGE-Android-Vorlesungen/V03_Examples/app/src/main/res/layout/activity_constraint_2.xml" value="0.23055555555555557" />
+        <entry key="..\:/Code/OST/MGE-Android-Vorlesungen/V03_Examples/app/src/main/res/layout/activity_frame.xml" value="0.4041666666666667" />
+        <entry key="..\:/Code/OST/MGE-Android-Vorlesungen/V03_Examples/app/src/main/res/layout/activity_linear_vertical.xml" value="0.23055555555555557" />
+        <entry key="..\:/Code/OST/MGE-Android-Vorlesungen/V03_Examples/app/src/main/res/layout/activity_padding_and_margin.xml" value="0.23055555555555557" />
+        <entry key="..\:/Code/OST/MGE-Android-Vorlesungen/V03_Examples/app/src/main/res/layout/activity_relative.xml" value="0.23055555555555557" />
+        <entry key="..\:/Code/OST/MGE-Android-Vorlesungen/V03_Examples/app/src/main/res/layout/activity_widgets_normal.xml" value="0.4041666666666667" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
