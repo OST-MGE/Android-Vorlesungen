@@ -99,7 +99,7 @@ public class WidgetsApiActivity extends AppCompatActivity {
             String permission = Manifest.permission.POST_NOTIFICATIONS;
             int status = ContextCompat.checkSelfPermission(this, permission);
 
-            if (status == PackageManager.PERMISSION_GRANTED) {
+            if (status != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[] { permission }, 0);
             }
         }
