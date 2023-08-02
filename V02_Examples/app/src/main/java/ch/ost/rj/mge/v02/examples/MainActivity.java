@@ -36,7 +36,12 @@ public class MainActivity extends AppCompatActivity {
             intent.setAction(Intent.ACTION_SEND);
             intent.setType("text/plain");
             intent.putExtra(Intent.EXTRA_TEXT, "Hey!");
-            startActivity(intent);
+
+            boolean hasReceiver = intent.resolveActivity(getPackageManager()) != null;
+
+            if (hasReceiver) {
+                startActivity(intent);
+            }
         });
 
         // Threading: Blockierung des UI (ANR)
