@@ -5,8 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <fragment android:name="ch.ost.rj.mge.v04.examples.FragmentA"
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/main_fragment_output"
+        android:name="ch.ost.rj.mge.v04.examples.FragmentA"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

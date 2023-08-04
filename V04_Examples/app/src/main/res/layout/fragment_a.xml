@@ -15,8 +15,9 @@
         android:text="Text View in First Fragment"
         android:textSize="20sp"/>
 
-    <fragment android:name="ch.ost.rj.mge.v04.examples.FragmentB"
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/placeholder_for_second_fragment"
+        android:name="ch.ost.rj.mge.v04.examples.FragmentB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.5" />
