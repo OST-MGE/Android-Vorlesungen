@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -28,8 +29,6 @@ import ch.ost.rj.mge.v06.examples.services.MyBoundService;
 import ch.ost.rj.mge.v06.examples.services.MyStartedService;
 
 public class MainActivity extends AppCompatActivity implements ServiceConnection {
-    private static final String BROADCAST_ACTION = "ch.ost.rj.mge.v06.myapplication.MY_INTENT";
-
     private TextView asyncOutputTextView;
     private Button runAsyncTaskButton;
     private Button runWithExecutorButton;
@@ -110,9 +109,15 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        filter.addAction(BROADCAST_ACTION);
+        filter.addAction(MyBroadcastReceiver.BROADCAST_ACTION);
 
-        registerReceiver(receiver, filter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(receiver, filter, RECEIVER_EXPORTED);
+        }
+        else
+        {
+            registerReceiver(receiver, filter);
+        }
     }
 
     private void unregisterBroadcastReceiver() {
@@ -122,19 +127,19 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
 
     private void sendImplicitBroadcast() {
         // Can be simulated using:
-        // adb shell am broadcast -a ch.ost.rj.mge.v06.myapplication.MY_INTENT
+        // adb shell am broadcast -a ch.ost.rj.mge.v06.myapplication.MY_INTENT --es data "Payload\ of\ Implicit\ Broadcast"
         Intent intent = new Intent();
-        intent.setAction(BROADCAST_ACTION);
-        intent.putExtra("data","example");
+        intent.setAction(MyBroadcastReceiver.BROADCAST_ACTION);
+        intent.putExtra(MyBroadcastReceiver.BROADCAST_EXTRA,"Payload of Implicit Broadcast");
         sendBroadcast(intent);
     }
 
     private void sendExplicitBroadcast() {
         // Can be simulated using:
-        // adb shell am broadcast -a ch.ost.rj.mge.v06.myapplication.MY_INTENT -n ch.ost.rj.mge.v06.myapplication/.MyBroadcastReceiver
+        // adb shell am broadcast -a ch.ost.rj.mge.v06.myapplication.MY_INTENT --es data "Payload\ of\ Explicit\ Broadcast" -n ch.ost.rj.mge.v06.examples/.broadcasts.MyBroadcastReceiver
         Intent intent = new Intent(this, MyBroadcastReceiver.class);
-        intent.setAction(BROADCAST_ACTION);
-        intent.putExtra("data","example");
+        intent.setAction(MyBroadcastReceiver.BROADCAST_ACTION);
+        intent.putExtra(MyBroadcastReceiver.BROADCAST_EXTRA,"Payload of Explicit Broadcast");
         sendBroadcast(intent);
     }
 
@@ -144,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
 
     private void runStartedService() {
         Intent broadcastIntent = new Intent(this, MyBroadcastReceiver.class);
-        broadcastIntent.setAction(BROADCAST_ACTION);
+        broadcastIntent.setAction(MyBroadcastReceiver.BROADCAST_ACTION);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_MUTABLE);
 
         Intent intent = new Intent(this, MyStartedService.class);
