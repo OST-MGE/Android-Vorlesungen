@@ -9,7 +9,7 @@ public abstract class DataBindingActivityBase extends AppCompatActivity {
 
     protected static String Firstname = "Thomas";
     protected static String Lastname = "Kälin";
-    protected static int Age = 37;
+    protected static int Age = 39;
 
     protected void Log(String method, String message) {
         Log.d(LOG_TAG, "DataBindingActivity." + method + ": " + message);
